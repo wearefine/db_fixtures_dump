@@ -6,7 +6,7 @@ May not work for tables with serialized columns.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile (likely the only group you'd want this in would be development):
 
     gem 'db_fixtures_dump'
 
