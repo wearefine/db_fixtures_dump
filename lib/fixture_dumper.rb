@@ -9,10 +9,10 @@ class FixtureDumper
       @@exclude_models   = options[:exclude_models] || ''
       fixtures_directory = options[:fixtures_directory] || "test/fixtures/"
       models             = get_app_models
-      fae_models         = ['Fae::StaticPage','Fae::TextArea','Fae::TextField']
-      models += fae_models
+      #fae_models         = ['Fae::StaticPage','Fae::TextArea','Fae::TextField']
+      #models += fae_models
 
-      FileUtils.mkdir_p "#{fixtures_directory}/fae"
+      #FileUtils.mkdir_p "#{fixtures_directory}/fae"
 
       puts "Found models: " + models.join(', ')
       puts "Dumping to: " + fixtures_directory
@@ -38,7 +38,7 @@ class FixtureDumper
     end
 
     def skipped_and_logged_model?(model)
-      return false if model.name == 'Fae::StaticPage'
+      #return false if model.name == 'Fae::StaticPage'
       if !model.ancestors.include?(ActiveRecord::Base) || model.ancestors.include?(Fae::StaticPage) || model.name == 'ApplicationRecord' || @@exclude_models.include?(model.name)
         @@skipped_models << model.name
         return true
