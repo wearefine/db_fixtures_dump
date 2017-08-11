@@ -10,15 +10,16 @@ class FixtureDumper
       fixtures_directory = options[:fixtures_directory] || "test/fixtures/"
       models             = get_app_models
       fae_models         = ['Fae::StaticPage','Fae::TextArea','Fae::TextField']
-
       models += fae_models
+
+      FileUtils.mkdir_p "#{fixtures_directory}/fae"
 
       puts "Found models: " + models.join(', ')
       puts "Dumping to: " + fixtures_directory
 
       models.each do |m|
         model = m.constantize
-        fixture_file = Rails.root + (fixtures_directory + model.name.underscore.pluralize.gsub('fae/','') + '.yml')
+        fixture_file = Rails.root + (fixtures_directory + model.name.underscore.pluralize + '.yml')
 
         next if skipped_and_logged_model?(model)
 
