@@ -37,7 +37,8 @@ class FixtureDumper
     end
 
     def skipped_and_logged_model?(model)
-      if !model.ancestors.include?(ActiveRecord::Base) || model.name == 'ApplicationRecord' || @@exclude_models.include?(model.name)
+      return false if model.name == 'Fae::StaticPage'
+      if !model.ancestors.include?(ActiveRecord::Base) || model.ancestors.include?(Fae::StaticPage) || model.name == 'ApplicationRecord' || @@exclude_models.include?(model.name)
         @@skipped_models << model.name
         return true
       end
